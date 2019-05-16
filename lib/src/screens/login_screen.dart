@@ -38,13 +38,18 @@ class EmailField extends StatelessWidget {
 class PasswordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      // obscureText: true,
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-        hintText: "password",
-        labelText: "Password",
-      ),
+    return StreamBuilder(
+      stream: bloc.password,
+      builder: (context, snapshot) => TextField(
+            // obscureText: true,
+            keyboardType: TextInputType.text,
+            onChanged: bloc.changePassword,
+            decoration: InputDecoration(
+              hintText: "password",
+              labelText: "Password",
+              errorText: snapshot.error,
+            ),
+          ),
     );
   }
 }
