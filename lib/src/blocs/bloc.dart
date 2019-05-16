@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:login_bloc/src/blocs/validators.dart';
 
 class Bloc with Validators {
-  final _emailStream = StreamController<String>();
-  final _passwordStream = StreamController<String>();
+  final _emailStream = StreamController<String>.broadcast();
+  final _passwordStream = StreamController<String>.broadcast();
 
   // Add values to stream
   Function(String) get changeEmail => _emailStream.sink.add;
