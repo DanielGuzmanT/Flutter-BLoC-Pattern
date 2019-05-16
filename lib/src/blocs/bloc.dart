@@ -21,3 +21,5 @@ class Bloc with Validators {
     _passwordStream.close();
   }
 }
+
+final bloc = Bloc();

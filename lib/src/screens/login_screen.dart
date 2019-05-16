@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_bloc/src/blocs/bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -19,12 +20,17 @@ class LoginScreen extends StatelessWidget {
 class EmailField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-        hintText: "you@example.com",
-        labelText: "Email address",
-      ),
+    return StreamBuilder(
+      stream: bloc.email,
+      builder: (context, snapshot) => TextField(
+            onChanged: bloc.changeEmail,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              hintText: "you@example.com",
+              labelText: "Email address",
+              errorText: snapshot.error,
+            ),
+          ),
     );
   }
 }
