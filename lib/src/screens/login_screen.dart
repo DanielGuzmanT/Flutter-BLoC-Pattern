@@ -61,7 +61,7 @@ class SubmitButton extends StatelessWidget {
       stream: bloc.submitValid,
       builder: (context, snapshot) => RaisedButton(
             shape: StadiumBorder(),
-            onPressed: snapshot.hasError ? null : () => print("PRESSED"),
+            onPressed: snapshot.hasData ? bloc.submit : null,
             color: Colors.lightBlueAccent,
             child: Text(
               "Login",
