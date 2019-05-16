@@ -57,13 +57,17 @@ class PasswordField extends StatelessWidget {
 class SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      onPressed: () {},
-      color: Colors.lightBlueAccent,
-      child: Text(
-        "Login",
-        style: TextStyle(color: Colors.white),
-      ),
+    return StreamBuilder(
+      stream: bloc.submitValid,
+      builder: (context, snapshot) => RaisedButton(
+            shape: StadiumBorder(),
+            onPressed: snapshot.hasError ? null : () => print("PRESSED"),
+            color: Colors.lightBlueAccent,
+            child: Text(
+              "Login",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
     );
   }
 }

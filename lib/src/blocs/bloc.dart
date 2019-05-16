@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:rxdart/rxdart.dart';
 
 import 'package:login_bloc/src/blocs/validators.dart';
 
@@ -14,6 +15,8 @@ class Bloc with Validators {
   Stream<String> get email => _emailStream.stream.transform(validateEmail);
   Stream<String> get password =>
       _passwordStream.stream.transform(validatePassword);
+  Stream<bool> get submitValid =>
+      Observable.combineLatest2(email, password, (e, p) => true);
 
   // close the stream sink
   void dispose() {
